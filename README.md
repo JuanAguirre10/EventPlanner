@@ -42,6 +42,3 @@ app/src/main/java/com/example/eventplanner/
 - Diseño con gradientes y cards
 - Confirmación antes de eliminar
 
-## Lo que aprendí
-
-Fue mi primer proyecto usando Compose y me costó un poco acostumbrarme pero al final quedó bien. También aprendí a usar Flow para que los datos se actualicen solos sin tener que hacer refresh. Firebase facilita bastante el tema de autenticación y base de datos.
