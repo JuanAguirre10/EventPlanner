@@ -1,9 +1,6 @@
 package com.example.eventplanner.models
 
-data class Event(
-    val id: String = "",
-    val userId: String = "",
-    val title: String = "",
-    val date: String = "",
-    val description: String = ""
+data class User(
+    val uid: String = "",
+    val email: String = ""
 )
