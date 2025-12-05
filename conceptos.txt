@@ -1,0 +1,14 @@
+1. ¿Qué es MVVM?
+Basicamente es una forma de organizar tu código para que no esté todo revuelto, se tiene el model que son tus datos, el view que es lo que se ve en pantalla, y el viewmodel que conecta ambos, yo lo usé porque así si quiero cambiar algo del diseño no tengo que tocar la lógica de firebase.
+
+2. ¿Qué es Firebase Auth?
+Es lo que usa firebase para manejar usuarios, con esto puedes hacer que la gente se registre y haga login sin tener que programar todo desde cero, solo se configura firebase y ya tienes login con email y password funcionando.
+
+3. ¿Qué es Firestore?
+Es la base de datos de firebase pero no usa tablas normales como MySQL ósea es NoSQL, acá todo va en colecciones y documentos, al usar la app si se crea o se cuarda algo, la base de datos se actualiza automáticamente.
+
+4. ¿Qué es Jetpack Compose?
+Es la forma de hacer pantallas en android pero con kotlin, antes tenías que hacer todo en xml y era medio lento, ahora escribes la ui directo en código y se ve cómo va quedando.
+
+5. ¿Qué es un CRUD?
+CRUD viene de 4 funciones, Create para agregar, read para ver o listar, Update para editar y Delete para borrar, en mi app hice el crud completo para los eventos, puedes crear uno nuevo, verlos todos, editarlos y eliminarlos.

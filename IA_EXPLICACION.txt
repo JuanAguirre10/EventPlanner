@@ -1,0 +1,25 @@
+PARTES ASISTIDAS POR IA:
+- Ejemplos de cómo usar Flow y snapshot listeners que no había usado antes
+- Referencias de diseño con gradientes y cards para que se vea más profesional
+- Ayuda para solucionar el bug de navegación que me tenía trabado
+- Mejora del diseño y colores para que se vea mejor.
+- Un poco de apoyo en la creación de los viewmodels
+- Bloques para los screens ya que esta parte me iba a consumir bastante tiempo
+
+
+LO QUE HICE YO:
+- Creación de la estructura
+- Creación del código de los modelos.
+- Creación del código de los dao
+- Toda la lógica de validaciones de email y contraseñas
+- Integración del logo de TECSUP en el inicio
+- Flujo de navegación entre las diferentes pantallas
+- Configuración completa de Firebase Console y las reglas de seguridad
+- Configuración de dependencias en build.gradle
+
+CÓMO EVITAR DEPENDER DE LA IA:
+- Leer y entender el código antes de usarlo en mi proyecto
+- Buscar en documentación oficial cuando algo no me queda claro
+- Hacer preguntas específicas en vez de pedir que haga todo
+- Probar diferentes soluciones por mi cuenta hasta que funcione
+- Intentar resolver errores solo revisando el logcat antes de pedir ayuda
