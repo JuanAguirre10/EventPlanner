@@ -24,9 +24,20 @@ class EventViewModel : ViewModel() {
     }
 
     private fun loadEvents() {
-        val userId = authDao.getCurrentUser()?.uid ?: return
+        val userId = authDao.getCurrentUser()?.uid
+        if (userId == null) {
+            println("ERROR: Usuario no autenticado")
+            return
+        }
+
+        println("Cargando eventos para userId: $userId")
+
         viewModelScope.launch {
             eventDao.getEventsRealTime(userId).collect { eventList ->
+                println("Eventos recibidos: ${eventList.size}")
+                eventList.forEach { event ->
+                    println("Evento: ${event.title} - ${event.date}")
+                }
                 _events.value = eventList
             }
         }

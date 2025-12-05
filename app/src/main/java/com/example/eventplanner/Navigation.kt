@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -18,7 +17,11 @@ sealed class Screen(val route: String) {
     object Register : Screen("register")
     object EventList : Screen("event_list")
     object CreateEvent : Screen("create_event")
-    object EditEvent : Screen("edit_event")
+    object EditEvent : Screen("edit_event/{eventId}/{eventTitle}/{eventDate}/{eventDescription}") {
+        fun createRoute(event: Event): String {
+            return "edit_event/${event.id}/${event.title}/${event.date}/${event.description}"
+        }
+    }
 }
 
 @Composable
@@ -71,8 +74,7 @@ fun AppNavigation(
                     navController.navigate(Screen.CreateEvent.route)
                 },
                 onNavigateToEdit = { event ->
-                    navController.currentBackStackEntry?.savedStateHandle?.set("event", event)
-                    navController.navigate(Screen.EditEvent.route)
+                    navController.navigate(Screen.EditEvent.createRoute(event))
                 },
                 onLogout = {
                     navController.navigate(Screen.Login.route) {
@@ -91,17 +93,26 @@ fun AppNavigation(
             )
         }
 
-        composable(Screen.EditEvent.route) {
-            val event = navController.previousBackStackEntry?.savedStateHandle?.get<Event>("event")
-            event?.let {
-                EditEventScreen(
-                    event = it,
-                    eventViewModel = eventViewModel,
-                    onNavigateBack = {
-                        navController.popBackStack()
-                    }
-                )
-            }
+        composable(Screen.EditEvent.route) { backStackEntry ->
+            val eventId = backStackEntry.arguments?.getString("eventId") ?: ""
+            val eventTitle = backStackEntry.arguments?.getString("eventTitle") ?: ""
+            val eventDate = backStackEntry.arguments?.getString("eventDate") ?: ""
+            val eventDescription = backStackEntry.arguments?.getString("eventDescription") ?: ""
+
+            val event = Event(
+                id = eventId,
+                title = eventTitle,
+                date = eventDate,
+                description = eventDescription
+            )
+
+            EditEventScreen(
+                event = event,
+                eventViewModel = eventViewModel,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
