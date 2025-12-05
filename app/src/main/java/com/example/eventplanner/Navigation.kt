@@ -1,6 +1,7 @@
 package com.example.eventplanner
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,11 +33,17 @@ fun AppNavigation(
     val isLoggedIn by authViewModel.isLoggedIn.collectAsState()
     var selectedEvent by remember { mutableStateOf<Event?>(null) }
 
-    val startDestination = if (isLoggedIn) Screen.EventList.route else Screen.Login.route
+    LaunchedEffect(isLoggedIn) {
+        if (isLoggedIn) {
+            navController.navigate(Screen.EventList.route) {
+                popUpTo(0) { inclusive = true }
+            }
+        }
+    }
 
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = Screen.Login.route
     ) {
         composable(Screen.Login.route) {
             LoginScreen(
@@ -45,9 +52,6 @@ fun AppNavigation(
                     navController.navigate(Screen.Register.route)
                 },
                 onLoginSuccess = {
-                    navController.navigate(Screen.EventList.route) {
-                        popUpTo(Screen.Login.route) { inclusive = true }
-                    }
                 }
             )
         }
@@ -59,9 +63,6 @@ fun AppNavigation(
                     navController.popBackStack()
                 },
                 onRegisterSuccess = {
-                    navController.navigate(Screen.EventList.route) {
-                        popUpTo(Screen.Login.route) { inclusive = true }
-                    }
                 }
             )
         }
